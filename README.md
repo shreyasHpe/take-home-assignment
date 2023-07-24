@@ -16,4 +16,4 @@ Start the development server.
 npm start
 ```
 
-![Screenshot](https://raw.githubusercontent.com/grommet/grommet-starter-new-app/master/public/cra-landing-page.png)
+![Screenshot](![image](https://github.com/shreyasHpe/take-home-assignment/assets/134534361/b043cd3c-8981-4097-aa76-f02ab1ac6f1e))
