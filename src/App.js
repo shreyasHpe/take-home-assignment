@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
 import UserDetails from "./pages/UserDetails";
-import UserNotFound from "./pages/UserNotFound";
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<UserNotFound />} />
+        <Route path="/" element={<Home />} />
         <Route path="/:username" element={<UserDetails />} />
       </Routes>
     </Router>
