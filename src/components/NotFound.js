@@ -1,5 +1,5 @@
 import React from "react";
-import { Grommet, Box, Heading } from "grommet";
+import { Box, Grommet, Heading } from "grommet";
 
 const NotFoundPage = () => {
   return (

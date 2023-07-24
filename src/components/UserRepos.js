@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Network, Star } from "grommet-icons";
 import {
+  Anchor,
   Box,
   Card,
   CardBody,
@@ -85,14 +86,34 @@ const CardTemplate = ({ repoDetails }) => {
 };
 
 const UserRepos = () => {
-  const [repos, setRepos] = useState(null);
-  const [pageNo, setPageNo] = useState(2);
   const { username } = useParams();
+  const [repos, setRepos] = useState(null);
+  const [user, setUser] = useState(null);
+  const [pageNo, setPageNo] = useState(2);
 
   const personal_token =
     "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";
 
   useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.github.com/users/${username}`,
+          {
+            headers: {
+              Accept: "application/vnd.github+json",
+              Authorization: `Bearer ${personal_token}`,
+              "X-GitHub-Api-Version": "2022-11-28",
+            },
+          }
+        );
+
+        setUser(response.data);
+      } catch (error) {
+        setUser(null);
+      }
+    };
+
     const fetchUserRepos = async () => {
       try {
         const response = await axios.get(
@@ -112,6 +133,7 @@ const UserRepos = () => {
       }
     };
 
+    fetchUser();
     fetchUserRepos();
   }, [username]);
 
@@ -163,10 +185,12 @@ const UserRepos = () => {
     <Grommet theme={theme} full>
       <Page>
         <PageContent align="center">
-          <PageHeader title="Welcome to Grommet!" />
+          <Heading level={3}>
+            Hello <Anchor label={user.name || username} href={user.html_url} />!
+          </Heading>
           <Grid columns="xlarge" gap="large" pad={{ bottom: "large" }}>
             <InfiniteScroll items={repos} onMore={onMore}>
-              {(item) => <CardTemplate repoDetails={item} />}
+              {(item) => <CardTemplate key={item.id} repoDetails={item} />}
             </InfiniteScroll>
           </Grid>
         </PageContent>
