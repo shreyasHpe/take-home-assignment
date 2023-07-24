@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Grommet, Heading } from "grommet";
 
-const NotFoundPage = () => {
+const NotFound = () => {
   return (
     <Grommet full>
       <Box fill justify="center">
@@ -13,4 +13,4 @@ const NotFoundPage = () => {
   );
 };
 
-export default NotFoundPage;
+export default NotFound;

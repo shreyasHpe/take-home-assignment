@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import UserReposPage from "./components/UserRepos";
-import NotFoundPage from "./components/NotFound";
+import UserDetails from "./pages/UserDetails";
+import UserNotFound from "./pages/UserNotFound";
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/:username" element={<UserReposPage />} />
-        <Route path="/" element={<NotFoundPage />} />
+        <Route path="/:username" element={<UserDetails />} />
+        <Route path="/" element={<UserNotFound />} />
       </Routes>
     </Router>
   );
