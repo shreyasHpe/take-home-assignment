@@ -1,6 +1,6 @@
 # GitHub Repository App
 
-[Deploy preview](take-home-assignment.azurewebsites.net) of the finished app.
+[Deploy preview](https://take-home-assignment.azurewebsites.net/) of the finished app.
 
 ## Getting Started
 
