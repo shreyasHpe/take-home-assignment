@@ -1,9 +1,10 @@
 import React from "react";
 import { Box, Grommet, Spinner, Text } from "grommet";
+import { GLOBAL_THEME } from "../constants";
 
 const LoaderPage = () => {
   return (
-    <Grommet full>
+    <Grommet theme={GLOBAL_THEME} full>
       <Box fill justify="center" align="center" direction="row" gap="small">
         <Spinner
           border={[

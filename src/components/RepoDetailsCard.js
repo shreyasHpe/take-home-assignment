@@ -13,7 +13,7 @@ import { Network, Star } from "grommet-icons";
 const RepoDetailsCard = ({ repoDetails }) => {
   return (
     <Card
-      width="large"
+      size="large"
       onClick={() => {
         window.open(repoDetails.html_url, "_self");
       }}
