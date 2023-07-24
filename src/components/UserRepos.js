@@ -7,16 +7,19 @@ import {
   Card,
   CardBody,
   CardFooter,
+  Data,
+  DataSearch,
+  DataTable,
   Grid,
   Grommet,
   Heading,
-  InfiniteScroll,
   Page,
   PageContent,
   PageHeader,
   Paragraph,
   Text,
   Tag,
+  Toolbar,
 } from "grommet";
 import axios from "axios";
 import NotFoundPage from "./NotFound";
@@ -87,7 +90,7 @@ const CardTemplate = ({ repoDetails }) => {
 
 const UserRepos = () => {
   const { username } = useParams();
-  const [repos, setRepos] = useState(null);
+  const [repos, setRepos] = useState([]);
   const [user, setUser] = useState(null);
   const [pageNo, setPageNo] = useState(2);
 
@@ -161,7 +164,7 @@ const UserRepos = () => {
     setTimeout(() => {
       fetchExtraUserRepos();
       setPageNo((prevPageNo) => prevPageNo + 1);
-    }, 1000);
+    }, 500);
   };
 
   if (!repos) {
@@ -181,6 +184,17 @@ const UserRepos = () => {
     );
   }
 
+  const columns = [
+    {
+      header: "",
+      property: "",
+      size: "large",
+      render: (data) => {
+        return <CardTemplate repoDetails={data} />;
+      },
+    },
+  ];
+
   return (
     <Grommet theme={theme} full>
       <Page>
@@ -189,9 +203,12 @@ const UserRepos = () => {
             Hello <Anchor label={user.name || username} href={user.html_url} />!
           </Heading>
           <Grid columns="xlarge" gap="large" pad={{ bottom: "large" }}>
-            <InfiniteScroll items={repos} onMore={onMore}>
-              {(item) => <CardTemplate key={item.id} repoDetails={item} />}
-            </InfiniteScroll>
+            <Data data={repos}>
+              <Toolbar align="end">
+                <DataSearch placeholder="Search repositories..." />
+              </Toolbar>
+              <DataTable columns={columns} onMore={() => onMore()} />
+            </Data>
           </Grid>
         </PageContent>
       </Page>
