@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { GLOBAL_THEME } from "../constants";
 
 const Home = () => {
-  const [githubUsername, setGithubUsername] = React.useState({});
+  const [githubUsername, setGithubUsername] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = () => {
