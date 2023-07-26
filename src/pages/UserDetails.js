@@ -55,9 +55,14 @@ const UserDetails = () => {
           <Hpe color="brand" size="large" />
           <Nav direction="row">
             <Text alignSelf="center" size="medium">
-              Hello, <Anchor label={username} href={userData.html_url} />!
+              Hello,{" "}
+              <Anchor
+                label={userData?.name || username}
+                href={userData?.html_url}
+              />
+              !
             </Text>
-            <Avatar src={userData.avatar_url} />
+            <Avatar src={userData?.avatar_url} />
           </Nav>
         </Header>
         <PageContent align="center">
